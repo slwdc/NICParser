@@ -44,18 +44,18 @@ class Parser {
     switch ($strlen) {
       case 9:
         if (!ctype_digit($id_number)) {
-          throw new InvalidIdentityCardNumberException('Provided number is not all-numeric', 102);
+          throw new InvalidIdentityCardNumberException('Provided string is not all-numeric', 102);
         }
         $this->data_components['format'] = static::ID_FORMAT_PRE_2016;
         return (int) $id_number;
 
       case 10:
         if ($id_number[9] !== 'V') {
-          throw new InvalidIdentityCardNumberException("Ending character is invalid.", 103);
+          throw new InvalidIdentityCardNumberException('Ending character is invalid.', 103);
         }
         $id_number = substr($id_number, 0, 9);
         if (!ctype_digit($id_number)) {
-          throw new InvalidIdentityCardNumberException('Provided number is not all-numeric', 102);
+          throw new InvalidIdentityCardNumberException('Provided string should be numeric except for the last character.', 102);
         }
         $this->data_components['format'] = static::ID_FORMAT_PRE_2016;
         return (int) $id_number;
