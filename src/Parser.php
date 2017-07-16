@@ -34,41 +34,24 @@ class Parser {
   private function parse(string $id_number) {
     $id_number = $this->checkLength($id_number);
     $this->checkBirthDate($id_number);
+    $this->detectFormat($id_number);
   }
 
   private function checkLength(string $id_number): int {
     $id_number = strtoupper($id_number);
     $strlen = strlen($id_number);
 
-    switch ($strlen) {
-      case 9:
-        if (!ctype_digit($id_number)) {
-          throw new InvalidIdentityCardNumberException('Provided string is not all-numeric', 102);
-        }
-        $this->data_components['format'] = static::ID_FORMAT_PRE_2016;
-        return (int) $id_number;
-
-      case 10:
-        if ($id_number[9] !== 'V') {
-          throw new InvalidIdentityCardNumberException('Ending character is invalid.', 103);
-        }
-        $id_number = substr($id_number, 0, 9);
-        if (!ctype_digit($id_number)) {
-          throw new InvalidIdentityCardNumberException('Provided string should be numeric except for the last character.', 102);
-        }
-        $this->data_components['format'] = static::ID_FORMAT_PRE_2016;
-        return (int) $id_number;
-
-      case 12:
-        if (!ctype_digit($id_number)) {
-          throw new InvalidIdentityCardNumberException('Provided number is not all-numeric', 102);
-        }
-        $this->data_components['format'] = static::ID_FORMAT_2016;
-        return (int) $id_number;
-
-      default:
-        throw new InvalidIdentityCardNumberException('Provided number is not of a satisfiable length.', 100);
+    if ($strlen === 10) {
+      if ($id_number[9] !== 'V') {
+        throw new InvalidIdentityCardNumberException('Ending character is invalid.', 103);
+      }
+      $id_number = substr($id_number, 0, 9);
     }
+
+    if (!ctype_digit($id_number)) {
+      throw new InvalidIdentityCardNumberException('Provided number is not all-numeric', 102);
+    }
+    return (int) $id_number;
   }
 
   private function checkBirthDate(int $id_number) {
@@ -109,6 +92,16 @@ class Parser {
     $this->data_components['date'] = $birthday;
     if ($birthday->format('Y') !== (string) $year) {
       throw new InvalidIdentityCardNumberException('Birthday indicator is invalid.', 201);
+    }
+  }
+
+  private function detectFormat(int $id_number) {
+    $strlen = strlen((string) $id_number);
+    if ($strlen === 12) {
+      $this->data_components['format'] = static::ID_FORMAT_2016;
+    }
+    else {
+      $this->data_components['format'] = static::ID_FORMAT_PRE_2016;
     }
   }
 }

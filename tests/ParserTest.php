@@ -10,16 +10,16 @@ use PHPUnit\Framework\TestCase;
 class ParserTest extends TestCase {
   public function getInvalidSamples() {
     $data = [];
-    $data['201626085730v'] = ['201626085730v', 100]; // should not be a V at end.
+    $data['201626085730v'] = ['201626085730v', 102]; // should not be a V at end.
     $data['187526085730'] = ['187526085730', 200]; // year out of accepted range.
     $data['20162608573v'] = ['20162608573v', 102]; // should not be a V at end.
-    $data['922608573x'] = ['922608573x', null]; // x is invalid.
+    $data['922608573x'] = ['922608573x', 103]; // x is invalid.
     $data[] = [time(), 103]; // invalid char at end ().
     $data['199336678548'] = ['199336678548', 201]; // day overflow.
     $data['199236778548'] = ['199236778548', 201]; // day overflow.
-    $data['foobar'] = ['foobar', 100]; // invalid length.
+    $data['foobar'] = ['foobar', 102]; // invalid length.
     $data['abcdepoghtyd'] = ['abcdepoghtyd', 102]; // invalid chars.
-    $data[] = ['', 100]; // invalid chars.
+    $data[] = ['', 102]; // invalid chars.
     $data['ninechars'] = ['ninechars', 102]; // 9 chars is valid, but not all-int
     $data['929782220v'] = ['929782220v', 201]; // Date overflow, female.
     $data['929782220V'] = ['929782220V', 201]; // Date overflow, female.
