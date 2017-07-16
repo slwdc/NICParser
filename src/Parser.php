@@ -79,10 +79,18 @@ class Parser {
     $year = (int) substr($full_number, 0, 4);
     $this->data_components['year'] = $year;
 
+    $this->checkBirthYear($year);
+    $this->buildBirthDateObject($full_number, $year);
+    $this->data_components['serial'] = (int) substr($full_number, 7, 4);
+  }
+
+  private function checkBirthYear(int $year) {
     if ($year < 1990 || $year > 2100) {
       throw new InvalidIdentityCardNumberException('Birth year is out ff 1900-2100 range', 200);
     }
+  }
 
+  private function buildBirthDateObject(string $full_number, int $year) {
     $birthday = new \DateTime();
     $birthday->setDate($year, 1, 1)->setTime(0, 0, 0);
     $birth_days_since = (int) substr($full_number, 4, 3);
@@ -102,7 +110,5 @@ class Parser {
     if ($birthday->format('Y') !== (string) $year) {
       throw new InvalidIdentityCardNumberException('Birthday indicator is invalid.', 201);
     }
-
-    $this->data_components['serial'] = (int) substr($full_number, 7, 4);
   }
 }
