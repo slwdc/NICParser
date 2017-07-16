@@ -6,6 +6,7 @@
         "phpunit/phpunit": "^6.2"
     },
     "license": "MIT",
+    "keywords": ["validation", "identity-card", "srilanka", "sri-lanka", "slwdc", "national-identification-number", "national-identity-documents"],
     "authors": [
         {
             "name": "Ayesh Karunaratne",
