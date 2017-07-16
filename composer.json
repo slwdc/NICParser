@@ -14,5 +14,10 @@
     ],
     "require": {
         "ayesh/case-insensitive-array": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "SLWDC\\NICParser": "src/"
+        }
     }
 }
