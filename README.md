@@ -1,2 +1,3 @@
-# NICParser
-Sri Lankan national identity card number validator and parser
+# Sri Lankan National Identity Card Number Parser
+
+[![Latest Stable Version](https://poser.pugx.org/slwdc/nic-parser/v/stable)](https://packagist.org/packages/slwdc/nic-parser) [![License](https://poser.pugx.org/slwdc/nic-parser/license)](https://packagist.org/packages/slwdc/nic-parser) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/slwdc/NICParser/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/slwdc/NICParser/?branch=master) [![Build Status](https://scrutinizer-ci.com/g/slwdc/NICParser/badges/build.png?b=master)](https://scrutinizer-ci.com/g/slwdc/NICParser/build-status/master)  [![codecov](https://codecov.io/gh/slwdc/NICParser/branch/master/graph/badge.svg)](https://codecov.io/gh/slwdc/NICParser) [![SensioLabsInsight](https://insight.sensiolabs.com/projects/2e61c5e1-095b-43c5-9fa2-c77527480774/mini.png)](https://insight.sensiolabs.com/projects/2e61c5e1-095b-43c5-9fa2-c77527480774) [![Too many badges](https://img.shields.io/badge/style-too_many-brightgreen.svg?style=toomany&label=badges)](https://github.com/slwdc/NICParser)
