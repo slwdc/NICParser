@@ -1,8 +1,7 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace SLWDC\NICParser;
-
 
 use SLWDC\NICParser\Exception\InvalidIdentityCardNumberException;
 
@@ -84,7 +83,7 @@ class Parser {
       throw new InvalidIdentityCardNumberException('Birth year is out ff 1900-2100 range', 200);
     }
 
-    $birthday = new \DateTime();mktime(0, 0, 0, 0, 0, $year);
+    $birthday = new \DateTime();
     $birthday->setDate($year, 1, 1)->setTime(0, 0, 0);
     $birth_days_since = (int) substr($full_number, 4, 3);
 
