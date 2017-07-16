@@ -17,7 +17,12 @@
     },
     "autoload": {
         "psr-4": {
-            "SLWDC\\NICParser": "src/"
+            "SLWDC\\NICParser\\": "src/"
         }
+    },
+    "scripts": {
+        "test": [
+            " phpunit"
+        ]
     }
 }
