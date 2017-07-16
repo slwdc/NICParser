@@ -9,8 +9,9 @@ use PHPUnit\Framework\TestCase;
 
 class ParserTest extends TestCase {
   public function getInvalidSamples() {
-    $data = new Strict();
+    $data = [];
     $data['201626085730v'] = ['201626085730v', 100]; // should not be a V at end.
+    $data['187526085730'] = ['187526085730', 200]; // year out of accepted range.
     $data['20162608573v'] = ['20162608573v', 102]; // should not be a V at end.
     $data['922608573x'] = ['922608573x', null]; // x is invalid.
     $data[] = [time(), 103]; // invalid char at end ().
@@ -19,6 +20,10 @@ class ParserTest extends TestCase {
     $data['foobar'] = ['foobar', 100]; // invalid length.
     $data['abcdepoghtyd'] = ['abcdepoghtyd', 102]; // invalid chars.
     $data[] = ['', 100]; // invalid chars.
+    $data['ninechars'] = ['ninechars', 102]; // 9 chars is valid, but not all-int
+    $data['929782220v'] = ['929782220v', 201]; // Date overflow, female.
+    $data['929782220V'] = ['929782220V', 201]; // Date overflow, female.
+    $data['X297R2220V'] = ['X29782220V', 102]; // Date overflow, female.
 
     return $data;
   }
@@ -26,6 +31,7 @@ class ParserTest extends TestCase {
   public function getValidSamples() {
     $data = new Strict();
     $data['922602573v'] = ['922602573v', ['year' => 1992, 'month' => 9, 'date' => 16, 'serial' => 2573, 'gender' => 'M', 'format' => 1]];
+    $data['922602573'] = ['922602573', ['year' => 1992, 'month' => 9, 'date' => 16, 'serial' => 2573, 'gender' => 'M', 'format' => 1]];
     //$data['922602573V'] = ['922602573V', ['year' => 1992, 'month' => 9, 'date' => 16, 'serial' => 2573, 'gender' => 'M', 'format' => 1]];
     $data['201626085734'] = ['201626085734', ['year' => 2016, 'month' => 9, 'date' => 16, 'serial' => 8573, 'gender' => 'M', 'format' => 2]];
     $data['199336578548'] = ['199336578548', ['year' => 1993, 'month' => 12, 'date' => 31, 'serial' => 7854, 'gender' => 'M', 'format' => 2]];
