@@ -13,11 +13,17 @@
         }
     ],
     "require": {
-        "ayesh/case-insensitive-array": "^1.0"
+        "ayesh/case-insensitive-array": "^1.0",
+        "php": "^7.0"
     },
     "autoload": {
         "psr-4": {
             "SLWDC\\NICParser\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SLWDC\\NICParser\\Tests\\": "tests/"
         }
     },
     "scripts": {
