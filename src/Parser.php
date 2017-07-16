@@ -7,15 +7,12 @@ namespace SLWDC\NICParser;
 use SLWDC\NICParser\Exception\InvalidIdentityCardNumberException;
 
 class Parser {
-  private $input_nic;
   private $data_components = [];
-  private $is_valid = false;
 
   const ID_FORMAT_PRE_2016 = 1;
   const ID_FORMAT_2016 = 2;
 
   public function __construct(string $id_number) {
-    $this->input_nic = $id_number;
     $this->parse($id_number);
   }
 
