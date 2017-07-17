@@ -64,7 +64,7 @@ class Parser {
 
     $this->checkBirthYear($year);
     $this->buildBirthDateObject($full_number, $year);
-    $this->data_components['serial'] = (int) substr($full_number, 7, 4);
+    $this->data_components['serial'] = (int) substr($full_number, 7);
   }
 
   private function checkBirthYear(int $year) {

@@ -33,10 +33,10 @@ class ParserTest extends TestCase {
     $data['922602573v'] = ['922602573v', ['year' => 1992, 'month' => 9, 'date' => 16, 'serial' => 2573, 'gender' => 'M', 'format' => 1]];
     $data['922602573'] = ['922602573', ['year' => 1992, 'month' => 9, 'date' => 16, 'serial' => 2573, 'gender' => 'M', 'format' => 1]];
     //$data['922602573V'] = ['922602573V', ['year' => 1992, 'month' => 9, 'date' => 16, 'serial' => 2573, 'gender' => 'M', 'format' => 1]];
-    $data['201626085734'] = ['201626085734', ['year' => 2016, 'month' => 9, 'date' => 16, 'serial' => 8573, 'gender' => 'M', 'format' => 2]];
-    $data['199336578548'] = ['199336578548', ['year' => 1993, 'month' => 12, 'date' => 31, 'serial' => 7854, 'gender' => 'M', 'format' => 2]];
-    $data['199236578548'] = ['199236578548', ['year' => 1992, 'month' => 12, 'date' => 30, 'serial' => 7854, 'gender' => 'M', 'format' => 2]];
-    $data['199136578548'] = ['199136578548', ['year' => 1991, 'month' => 12, 'date' => 31, 'serial' => 7854, 'gender' => 'M', 'format' => 2]];
+    $data['201626085734'] = ['201626085734', ['year' => 2016, 'month' => 9, 'date' => 16, 'serial' => 85734, 'gender' => 'M', 'format' => 2]];
+    $data['199336578548'] = ['199336578548', ['year' => 1993, 'month' => 12, 'date' => 31, 'serial' => 78548, 'gender' => 'M', 'format' => 2]];
+    $data['199236578548'] = ['199236578548', ['year' => 1992, 'month' => 12, 'date' => 30, 'serial' => 78548, 'gender' => 'M', 'format' => 2]];
+    $data['199136578548'] = ['199136578548', ['year' => 1991, 'month' => 12, 'date' => 31, 'serial' => 78548, 'gender' => 'M', 'format' => 2]];
 
     return $data;
   }
