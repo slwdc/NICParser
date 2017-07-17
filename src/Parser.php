@@ -3,7 +3,7 @@ declare(strict_types = 1);
 
 namespace SLWDC\NICParser;
 
-use SLWDC\NICParser\Exception\InvalidIdentityCardNumberException;
+use SLWDC\NICParser\Exception\InvalidArgumentException;
 
 class Parser {
   private $data_components = [];
@@ -43,13 +43,13 @@ class Parser {
 
     if ($strlen === 10) {
       if ($id_number[9] !== 'V') {
-        throw new InvalidIdentityCardNumberException('Ending character is invalid.', 103);
+        throw new InvalidArgumentException('Ending character is invalid.', 103);
       }
       $id_number = substr($id_number, 0, 9);
     }
 
     if (!ctype_digit($id_number)) {
-      throw new InvalidIdentityCardNumberException('Provided number is not all-numeric', 102);
+      throw new InvalidArgumentException('Provided number is not all-numeric', 102);
     }
     return (int) $id_number;
   }
@@ -69,7 +69,7 @@ class Parser {
 
   private function checkBirthYear(int $year) {
     if ($year < 1990 || $year > 2100) {
-      throw new InvalidIdentityCardNumberException('Birth year is out ff 1900-2100 range', 200);
+      throw new InvalidArgumentException('Birth year is out ff 1900-2100 range', 200);
     }
   }
 
@@ -91,7 +91,7 @@ class Parser {
     $birthday->add(new \DateInterval('P' . $birth_days_since . 'D'));
     $this->data_components['date'] = $birthday;
     if ($birthday->format('Y') !== (string) $year) {
-      throw new InvalidIdentityCardNumberException('Birthday indicator is invalid.', 201);
+      throw new InvalidArgumentException('Birthday indicator is invalid.', 201);
     }
   }
 

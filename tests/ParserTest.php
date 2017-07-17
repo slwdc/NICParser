@@ -3,7 +3,7 @@
 namespace SLWDC\NICParser\Tests;
 
 use Ayesh\CaseInsensitiveArray\Strict;
-use SLWDC\NICParser\Exception\InvalidIdentityCardNumberException;
+use SLWDC\NICParser\Exception\InvalidArgumentException;
 use SLWDC\NICParser\Parser;
 use PHPUnit\Framework\TestCase;
 
@@ -48,7 +48,7 @@ class ParserTest extends TestCase {
    * @param $expected_error_code
    */
   public function testValidityChecker(string $id, $expected_error_code) {
-    $this->expectException(InvalidIdentityCardNumberException::class);
+    $this->expectException(InvalidArgumentException::class);
     if ($expected_error_code) {
       $this->expectExceptionCode($expected_error_code);
     }
