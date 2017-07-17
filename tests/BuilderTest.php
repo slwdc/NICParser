@@ -18,5 +18,11 @@ class BuilderTest extends TestCase {
     $builder->setSerialNumber(25738);
 
     $this->assertSame('199226025738', $builder->getNumber());
+
+    $parser = $builder->getParser();
+
+    $new_builder = new Builder();
+    $new_builder->setParser($parser);
+    $this->assertSame('199226025738', $builder->getNumber());
   }
 }
