@@ -4,6 +4,7 @@ declare(strict_types = 1);
 namespace SLWDC\NICParser;
 
 
+use SLWDC\NICParser\Exception\BadMethodCallException;
 use SLWDC\NICParser\Exception\InvalidArgumentException;
 
 class Builder {
@@ -70,13 +71,13 @@ class Builder {
 
   public function checkBuilderFields() {
     if (!$this->birthday) {
-      throw new \BadMethodCallException('Attempting to build ID number without a valid birthday set.');
+      throw new BadMethodCallException('Attempting to build ID number without a valid birthday set.');
     }
     if (!$this->gender) {
-      throw new \BadMethodCallException('Attempting to build ID number without a valid gender set.');
+      throw new BadMethodCallException('Attempting to build ID number without a valid gender set.');
     }
     if (!$this->serial_number) {
-      throw new \BadMethodCallException('Attempting to build ID number without a valid serial number set.');
+      throw new BadMethodCallException('Attempting to build ID number without a valid serial number set.');
     }
   }
 }
