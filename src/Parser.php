@@ -68,7 +68,7 @@ class Parser {
   }
 
   private function checkBirthYear(int $year) {
-    if ($year < 1990 || $year > 2100) {
+    if ($year < 1900 || $year > 2100) {
       throw new InvalidArgumentException('Birth year is out ff 1900-2100 range', 200);
     }
   }
