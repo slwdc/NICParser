@@ -2,9 +2,6 @@
     "name": "slwdc/nic-parser",
     "description": "Sri Lankan national identity card number validator",
     "type": "library",
-    "require-dev": {
-        "phpunit/phpunit": "^6.2"
-    },
     "license": "MIT",
     "keywords": ["validation", "identity-card", "srilanka", "sri-lanka", "slwdc", "national-identification-number", "national-identity-documents"],
     "authors": [
@@ -14,9 +11,13 @@
         }
     ],
     "require": {
-        "ayesh/case-insensitive-array": "^1.0",
-        "php": "^7.0"
+        "php": "^7.0",
+		"php-64bit": "^7.0"
     },
+	"require-dev": {
+	    "phpunit/phpunit": "^6.2",
+	    "ayesh/case-insensitive-array": "^1.0"
+	},
     "autoload": {
         "psr-4": {
             "SLWDC\\NICParser\\": "src/"
