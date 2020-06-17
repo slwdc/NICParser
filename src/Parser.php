@@ -86,7 +86,11 @@ class Parser {
       $this->data_components['gender'] = 'M';
     }
 
-    --$birth_days_since;
+    if (date('L', mktime(0, 0, 0, 1, 1, $year)) == 1) {
+      --$birth_days_since;
+    } else {
+      $birth_days_since -= 2;
+    }
 
     $birthday->add(new \DateInterval('P' . $birth_days_since . 'D'));
     $this->data_components['date'] = $birthday;
