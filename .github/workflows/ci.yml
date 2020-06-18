@@ -31,7 +31,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          coverage: pcov
+          coverage: xdebug
           ini-values: assert.exception=1, zend.assertions=1
 
       - name: Install composer dependencies ignoring platform requirements
