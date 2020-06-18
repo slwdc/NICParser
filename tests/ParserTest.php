@@ -14,7 +14,7 @@ class ParserTest extends TestCase {
     $data['187526085730'] = ['187526085730', 200]; // year out of accepted range.
     $data['20162608573v'] = ['20162608573v', 102]; // should not be a V at end.
     $data['922608573x'] = ['922608573x', 103]; // x is invalid.
-    $data[] = [time(), 103]; // invalid char at end ().
+    $data[] = [(string) time(), 103]; // invalid char at end ().
     $data['199336678548'] = ['199336678548', 201]; // day overflow.
     $data['199236778548'] = ['199236778548', 201]; // day overflow.
     $data['foobar'] = ['foobar', 102]; // invalid length.
@@ -38,7 +38,6 @@ class ParserTest extends TestCase {
     $data['199236578548'] = ['199236578548', ['year' => 1992, 'month' => 12, 'date' => 30, 'serial' => 78548, 'gender' => 'M', 'format' => 2]];
     $data['199136578548'] = ['199136578548', ['year' => 1991, 'month' => 12, 'date' => 31, 'serial' => 78548, 'gender' => 'M', 'format' => 2]];
     $data['199226025738'] = ['199226025738', ['year' => 1992, 'month' => 9, 'date' => 16, 'serial' => 25738, 'gender' => 'M', 'format' => 2]];
-    $data['199226025738_int'] = [199226025738, ['year' => 1992, 'month' => 9, 'date' => 16, 'serial' => 25738, 'gender' => 'M', 'format' => 2]];
 
     return $data;
   }
