@@ -3,7 +3,11 @@ declare(strict_types = 1);
 
 namespace SLWDC\NICParser;
 
+use DateInterval;
+use DateTime;
 use SLWDC\NICParser\Exception\InvalidArgumentException;
+
+use function strlen;
 
 class Parser {
   private $data_components = [];
@@ -15,7 +19,7 @@ class Parser {
     $this->parse($id_number);
   }
 
-  public function getBirthday(): \DateTime {
+  public function getBirthday(): DateTime {
     return $this->data_components['date'];
   }
 
@@ -74,8 +78,8 @@ class Parser {
   }
 
   private function buildBirthDateObject(string $full_number, int $year) {
-    $birthday = new \DateTime();
-    $birthday->setDate($year, 1, 1)->setTime(0, 0, 0);
+    $birthday = new DateTime();
+    $birthday->setDate($year, 1, 1)->setTime(0, 0);
     $birth_days_since = (int) substr($full_number, 4, 3);
 
     if ($birth_days_since > 500) {
@@ -88,7 +92,7 @@ class Parser {
 
     --$birth_days_since;
 
-    $birthday->add(new \DateInterval('P' . $birth_days_since . 'D'));
+    $birthday->add(new DateInterval('P' . $birth_days_since . 'D'));
     $this->data_components['date'] = $birthday;
     if ($birthday->format('Y') !== (string) $year) {
       throw new InvalidArgumentException('Birthday indicator is invalid.', 201);
