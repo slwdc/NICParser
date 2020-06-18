@@ -4,12 +4,11 @@ php:
   - 7.1
   - 7.2
   - 7.3
+  - 7.4
   - nightly
 
 before_script:
   - composer self-update
-  - travis_retry composer install --prefer-source --no-interaction --dev
+  - travis_retry composer install --prefer-dist --no-interaction --dev
 script:
-  - vendor/bin/phpunit --coverage-clover=coverage.xml
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - vendor/bin/phpunit
