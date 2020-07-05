@@ -102,7 +102,7 @@ class Parser {
     }
   }
 
-  private function detectFormat(int $id_number) {
+  private function detectFormat(int $id_number): void {
     $strlen = strlen((string) $id_number);
     if ($strlen === 12) {
       $this->data_components['format'] = static::ID_FORMAT_2016;
