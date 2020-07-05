@@ -2,6 +2,7 @@
 
 namespace SLWDC\NICParser\Tests;
 
+use DateTime;
 use SLWDC\NICParser\Builder;
 use PHPUnit\Framework\TestCase;
 use SLWDC\NICParser\Parser;
@@ -18,7 +19,7 @@ class ParserBuilderTest extends TestCase {
         $builder = new Builder();
         $builder->setSerialNumber($serial)
             ->setGender($gender)
-            ->setBirthday(new \DateTime("{$day}.{$month}.{$year}"));
+            ->setBirthday(new DateTime("{$day}.{$month}.{$year}"));
 
         $number = $builder->getNumber();
         $this->assertSame($number, $id);

@@ -50,7 +50,7 @@ class ParserTest extends TestCase {
    * @param string $id
    * @param $expected_error_code
    */
-  public function testValidityChecker(string $id, $expected_error_code) {
+  public function testValidityChecker(string $id, $expected_error_code): void {
     $this->expectException(InvalidArgumentException::class);
     if ($expected_error_code) {
       $this->expectExceptionCode($expected_error_code);
@@ -64,7 +64,7 @@ class ParserTest extends TestCase {
    * @param string $id
    * @param array $actual_data
    */
-  public function testIndividualFields(string $id, array $actual_data = []) {
+  public function testIndividualFields(string $id, array $actual_data = []): void {
     $parser = new Parser($id);
 
     $date = $parser->getBirthday();
