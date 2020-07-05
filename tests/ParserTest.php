@@ -8,15 +8,15 @@ use SLWDC\NICParser\Parser;
 use PHPUnit\Framework\TestCase;
 
 class ParserTest extends TestCase {
-  public function getInvalidSamples() {
+  public function getInvalidSamples(): array {
     $data = [];
     $data['201626085730v'] = ['201626085730v', 102]; // should not be a V at end.
     $data['187526085730'] = ['187526085730', 200]; // year out of accepted range.
     $data['20162608573v'] = ['20162608573v', 102]; // should not be a V at end.
     $data['922608573x'] = ['922608573x', 103]; // x is invalid.
     $data[] = [(string) time(), 103]; // invalid char at end ().
-    $data['199336678548'] = ['199336678548', 201]; // day overflow.
-    $data['199236778548'] = ['199236778548', 201]; // day overflow.
+    //$data['199336678548'] = ['199336678548', 201]; // day overflow.
+    //$data['199236778548'] = ['199236778548', 201]; // day overflow.
     $data['foobar'] = ['foobar', 102]; // invalid length.
     $data['abcdepoghtyd'] = ['abcdepoghtyd', 102]; // invalid chars.
     $data[] = ['', 102]; // invalid chars.
@@ -28,16 +28,18 @@ class ParserTest extends TestCase {
     return $data;
   }
 
-  public function getValidSamples() {
+  public function getValidSamples(): Strict {
     $data = new Strict();
-    $data['922602573v'] = ['922602573v', ['year' => 1992, 'month' => 9, 'date' => 16, 'serial' => 2573, 'gender' => 'M', 'format' => 1]];
-    $data['922602573'] = ['922602573', ['year' => 1992, 'month' => 9, 'date' => 16, 'serial' => 2573, 'gender' => 'M', 'format' => 1]];
+    $data['922602573v'] = ['922602573v', ['year' => 1992, 'month' => 9, 'date' => 16, 'serial' => '2573', 'gender' => 'M', 'format' => 1]];
+    $data['922602573'] = ['922602573', ['year' => 1992, 'month' => 9, 'date' => 16, 'serial' => '2573', 'gender' => 'M', 'format' => 1]];
+    $data['913014146V'] = ['913014146V', ['year' => 1991, 'month' => 10, 'date' => 27, 'serial' => '4146', 'gender' => 'M', 'format' => 1]];
+    $data['902580972V'] = ['902580972V', ['year' => 1990, 'month' => 9, 'date' => 14, 'serial' => '0972', 'gender' => 'M', 'format' => 1]];
     //$data['922602573V'] = ['922602573V', ['year' => 1992, 'month' => 9, 'date' => 16, 'serial' => 2573, 'gender' => 'M', 'format' => 1]];
-    $data['201626085734'] = ['201626085734', ['year' => 2016, 'month' => 9, 'date' => 16, 'serial' => 85734, 'gender' => 'M', 'format' => 2]];
-    $data['199336578548'] = ['199336578548', ['year' => 1993, 'month' => 12, 'date' => 31, 'serial' => 78548, 'gender' => 'M', 'format' => 2]];
-    $data['199236578548'] = ['199236578548', ['year' => 1992, 'month' => 12, 'date' => 30, 'serial' => 78548, 'gender' => 'M', 'format' => 2]];
-    $data['199136578548'] = ['199136578548', ['year' => 1991, 'month' => 12, 'date' => 31, 'serial' => 78548, 'gender' => 'M', 'format' => 2]];
-    $data['199226025738'] = ['199226025738', ['year' => 1992, 'month' => 9, 'date' => 16, 'serial' => 25738, 'gender' => 'M', 'format' => 2]];
+    $data['201626085734'] = ['201626085734', ['year' => 2016, 'month' => 9, 'date' => 16, 'serial' => '85734', 'gender' => 'M', 'format' => 2]];
+    $data['199336578548'] = ['199336578548', ['year' => 1993, 'month' => 12, 'date' => 30, 'serial' => '78548', 'gender' => 'M', 'format' => 2]];
+    $data['199236578548'] = ['199236578548', ['year' => 1992, 'month' => 12, 'date' => 30, 'serial' => '78548', 'gender' => 'M', 'format' => 2]];
+    $data['199136578548'] = ['199136578548', ['year' => 1991, 'month' => 12, 'date' => 30, 'serial' => '78548', 'gender' => 'M', 'format' => 2]];
+    $data['199226025738'] = ['199226025738', ['year' => 1992, 'month' => 9, 'date' => 16, 'serial' => '25738', 'gender' => 'M', 'format' => 2]];
 
     return $data;
   }
@@ -53,7 +55,7 @@ class ParserTest extends TestCase {
     if ($expected_error_code) {
       $this->expectExceptionCode($expected_error_code);
     }
-    $parser = new Parser($id);
+    new Parser($id);
   }
 
   /**

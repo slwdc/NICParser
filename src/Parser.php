@@ -23,8 +23,8 @@ class Parser {
     return $this->data_components['date'];
   }
 
-  public function getSerialNumber(): int {
-    return $this->data_components['serial'];
+  public function getSerialNumber(): string {
+    return (string) $this->data_components['serial'];
   }
 
   public function getFormat(): int {
@@ -68,7 +68,7 @@ class Parser {
 
     $this->checkBirthYear($year);
     $this->buildBirthDateObject($full_number, $year);
-    $this->data_components['serial'] = (int) substr($full_number, 7);
+    $this->data_components['serial'] = (string) substr($full_number, 7);
   }
 
   private function checkBirthYear(int $year) {
@@ -90,10 +90,9 @@ class Parser {
       $this->data_components['gender'] = 'M';
     }
 
-    if (date('L', mktime(0, 0, 0, 1, 1, $year)) === "1") {
+    --$birth_days_since;
+    if (date('L', mktime(0, 0, 0, 1, 1, $year)) !== '1') {
       --$birth_days_since;
-    } else {
-      $birth_days_since -= 2;
     }
 
     $birthday->add(new DateInterval('P' . $birth_days_since . 'D'));
