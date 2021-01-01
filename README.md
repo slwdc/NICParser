@@ -89,4 +89,8 @@ I'm no good at writing sample / filler text, so go write something yourself.
 ### Contribute
 All contributions are welcome. If you have any questions, please post an issue in the Github issue queue. For any PRs, we'd appreciate if you can add proper test coverage as well. 
 
+### Alternative Implementations
+
+ - [Ksengine/NICParser](https://github.com/Ksengine/NICParser/) - A Python implementation
+
 kthxbye.
